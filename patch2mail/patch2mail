@@ -1,0 +1,13 @@
+#!/bin/bash
+
+tmp="$(mktemp /tmp/updates.XXXXXX)"
+
+/usr/sbin/zypp-checkpatches-wrapper | xsltproc /usr/share/patch2mail/patch2mail.xsl - > "$tmp"
+grep "ERROR\|^===" "$tmp" >/dev/null || {
+	rm -f "$tmp"
+	exit 0 # no updates, no errors
+}
+
+grep -v "^__TOTAL__" "$tmp" | mail -s "$(hostname) updates" root
+# echo "*** $(hostname) updates ***"; grep -v "^__TOTAL__" "$tmp"
+rm -f "$tmp" 
