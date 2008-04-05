@@ -4,7 +4,6 @@ dir=`mktemp -d`
 cd $dir
 old=`cat $homedir/last_rev`
 new=`LC_ALL=C svn info http://svn.opensuse.org/svn/zypp/trunk | grep ^Revision: | sed -e 's,.*: *,,'`
-echo $old:$new
 for pack in libsatsolver libzypp libzypp-testsuite-tools libzypp-bindings zypper; do
   
   case $pack in
@@ -31,5 +30,5 @@ for pack in libsatsolver libzypp libzypp-testsuite-tools libzypp-bindings zypper
 done
 cd /
 rm -rf $dir
-echo $new > $homedir/last_rev
-
+echo $(($new+1)) > $homedir/last_rev
+#svn ci -m "updated repo" $homedir/last_rev
