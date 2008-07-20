@@ -1,8 +1,9 @@
 patch2mail
 ~~~~~~~~~~
 
-patch2mail checks zypp-checkpatches-wrapper for available updates and 
-sends a mail to root if any patches are available.
+patch2mail checks zypper (zypp-checkpatches-wrapper on openSUSE <= 10.3)
+for available updates and sends a mail to root if any patches are
+available.
 
 Usage is very simple: just install the RPM :-)
 It comes with the script in /etc/cron.daily and sends the mail to root.
@@ -22,7 +23,7 @@ Thanks to Thomas Schraitle for helping with some xslt details.
 License / Copyright
 ~~~~~~~~~~~~~~~~~~~
 
-Copyright (c) 2007 Christian Boltz - www.cboltz.de
+Copyright (c) 2007-2008 Christian Boltz - www.cboltz.de
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by

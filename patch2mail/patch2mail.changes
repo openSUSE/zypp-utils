@@ -1,0 +1,11 @@
+Sun Jul 20 18:20:00 CEST 2008 - cboltz
+
+- update for openSUSE 11.0 (scripts for older versions still included)
+- require cron to ensure the script is running daily
+- version 0.9.2
+
+Mon Feb 18 23:02:26 CEST 2008 - cboltz
+
+- Initial SVN commit of patch2mail
+- SVN: http://svn.opensuse.org/svn/zypp/trunk/tools/patch2mail
+- version 0.9.1
