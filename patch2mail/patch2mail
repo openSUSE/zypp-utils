@@ -3,7 +3,7 @@
 tmp="$(mktemp /tmp/updates.XXXXXX)"
 
 /usr/sbin/zypp-refresh-wrapper >/dev/null
-/usr/bin/zypper --xmlout lu | xsltproc /usr/share/patch2mail/patch2mail.xsl - > "$tmp"
+/usr/bin/zypper --xmlout lu -t patch | xsltproc /usr/share/patch2mail/patch2mail.xsl - > "$tmp"
 grep "ERROR\|^===" "$tmp" >/dev/null || {
 	rm -f "$tmp"
 	exit 0 # no updates, no errors

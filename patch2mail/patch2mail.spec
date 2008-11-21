@@ -1,7 +1,7 @@
 # norootforbuild
 #
 Name:          patch2mail
-Version:       0.9.2
+Version:       0.9.3
 Release:       1
 #
 License:       GPL
@@ -33,20 +33,23 @@ Authors:
     Christian Boltz < p a c k a g e s  AT  c b o l t z DOT d e >
 
 %prep
-%setup
+%setup -q
 
 %build
 
 %install
-%{__mkdir} -p %{buildroot}/usr/share/%{name}
+%{__mkdir} -p %{buildroot}%{_datadir}/%{name}
 %{__mkdir} -p %{buildroot}/etc/cron.daily
 
-%{__cp} patch2mail.xsl %{buildroot}/usr/share/%{name}/
+%{__cp} patch2mail.xsl %{buildroot}%{_datadir}/%{name}/
 %if 0%{?suse_version} < 1030
-	%{__cp} patch2mail.xsl_10.2 %{buildroot}/usr/share/%{name}/patch2mail.xsl
+	%{__cp} patch2mail.xsl_10.2 %{buildroot}%{_datadir}/%{name}/patch2mail.xsl
 %endif
 
 %{__cp} patch2mail %{buildroot}/etc/cron.daily/
+%if 0%{?suse_version} < 1110
+	%{__cp} patch2mail_11.0 %{buildroot}/etc/cron.daily/patch2mail
+%endif
 %if 0%{?suse_version} < 1100
 	%{__cp} patch2mail_10.3 %{buildroot}/etc/cron.daily/patch2mail
 %endif
@@ -56,12 +59,13 @@ find %{buildroot}
 echo ================================
 
 %clean
+rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
 %attr(755, root, root) /etc/cron.daily/%{name}
-/usr/share/%{name}/
-/usr/share/%{name}/%{name}.xsl
+%{_datadir}/%{name}/
+%{_datadir}/%{name}/%{name}.xsl
 %doc README
 
 %changelog
