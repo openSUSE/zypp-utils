@@ -1,7 +1,7 @@
 # norootforbuild
 #
 Name:          patch2mail
-Version:       0.9.3
+Version:       0.9.4
 Release:       1
 #
 License:       GPL
@@ -69,6 +69,14 @@ rm -rf %{buildroot}
 %doc README
 
 %changelog
+
+* Tue Dec 09 2008 - cboltz
+- some small output fixes
+- enforce LANG=C to avoid charset problems in zypper output
+- version 0.9.4
+* Fri Nov 21 2008 - cboltz
+- update for openSUSE 11.1 (zypper needs "lu -t patch" now)
+- version 0.9.3
 * Sun Jul 20 2008 - cboltz
 - update for openSUSE 11.0 (scripts for older versions still included)
 - version 0.9.2

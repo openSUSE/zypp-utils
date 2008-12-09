@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="ISO-8859-15"?>
 <!--
 
-Copyright (c) 2007-2008 Christian Boltz - www.cboltz.de
+Copyright (c) 2007 Christian Boltz - www.cboltz.de
 
 Thanks to Thomas Schraitle for helping with some xslt details.
 
@@ -19,9 +19,10 @@ for more details.
 
 -->
 
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet version="1.1"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-<xsl:output method="text"/>
+
+<!-- <xsl:output method="text" encoding="ISO-8859-15" media-type="text/plain" /> -->
 
 <xsl:strip-space elements="*"/>
 
@@ -29,8 +30,9 @@ for more details.
 <xsl:template match="/"><xsl:apply-templates /></xsl:template>
 
 <xsl:template match="update-status">
-<xsl:apply-templates />
-</xsl:template>
+<xsl:document href="-" method="text" ><xsl:apply-templates />
+</xsl:document></xsl:template>
+
 
 <!-- errors -->
 
@@ -91,16 +93,8 @@ for more details.
 <xsl:template match="update-list/update/source">Update source: <xsl:value-of select="@alias" /> (<xsl:value-of select="@url" />)</xsl:template>
 -->
 
-<!-- messages, unless type="info" -->
-<xsl:template match="message">
-  <xsl:if test="@type != 'info'">
-    <xsl:text>&#10;ERROR: </xsl:text>
-    <xsl:apply-templates />
-    <xsl:text>&#10;</xsl:text>
-  </xsl:if>
-</xsl:template>
 
-<!-- summary (only available in openSUSE <= 10.2) -->
+<!-- summary -->
 
 <xsl:template match="update-summary">
   <xsl:text>--------------------------------------------------------&#10;&#10;</xsl:text>

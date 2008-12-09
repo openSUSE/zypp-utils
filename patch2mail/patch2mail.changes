@@ -1,3 +1,8 @@
+Tue Dec 09 13:24:00 CET 2008 - cboltz
+- some small output fixes
+- enforce LANG=C to avoid charset problems in zypper output
+- version 0.9.4
+
 Fri Nov 21 20:45:00 CEST 2008 - cboltz
 
 - update for openSUSE 11.1 (zypper needs "lu -t patch" now)
