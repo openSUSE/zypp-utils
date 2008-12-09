@@ -10,7 +10,7 @@ Group:         System/Packages
 BuildRoot:     %{_tmppath}/%{name}-%{version}-build
 BuildRequires: bash
 #
-URL:           http://www.cboltz.de
+URL:           http://blog.cboltz.de/plugin/tag/patch2mail
 Source:        %{name}-%{version}.tar.bz2
 #
 Summary:       Patch notification via mail
