@@ -1,0 +1,10 @@
+## Path:            Network/Update/Notifications
+## Description:     Update notifications via mail
+## ServiceRestart:  smtp
+#
+## Type:        string(root,mail@domain.tld)
+## Default:     "root"
+#
+# The user or mail address to send update notifications.
+#
+MAILADDRESS="root"

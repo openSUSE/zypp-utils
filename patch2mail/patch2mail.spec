@@ -1,7 +1,7 @@
 # norootforbuild
 #
 Name:          patch2mail
-Version:       0.9.4
+Version:       0.9.5
 Release:       1
 #
 License:       GPL
@@ -38,50 +38,40 @@ Authors:
 %build
 
 %install
-%{__mkdir} -p %{buildroot}%{_datadir}/%{name}
-%{__mkdir} -p %{buildroot}/etc/cron.daily
+%{__install} -d -m 0755 %{buildroot}%{_datadir}/%{name}
+%{__install} -d -m 0755 %{buildroot}/etc/cron.daily
+%{__install} -d -m 0755 %{buildroot}/var/adm/fillup-templates/
 
-%{__cp} patch2mail.xsl %{buildroot}%{_datadir}/%{name}/
+%{__install} -m 0644 patch2mail.xsl %{buildroot}%{_datadir}/%{name}/patch2mail.xsl
 %if 0%{?suse_version} < 1030
-	%{__cp} patch2mail.xsl_10.2 %{buildroot}%{_datadir}/%{name}/patch2mail.xsl
+	%{__install} -m 0644 patch2mail.xsl_10.2 %{buildroot}%{_datadir}/%{name}/patch2mail.xsl
 %endif
 
-%{__cp} patch2mail %{buildroot}/etc/cron.daily/
+%{__install} -m 0755 patch2mail %{buildroot}/etc/cron.daily/patch2mail
 %if 0%{?suse_version} < 1110
-	%{__cp} patch2mail_11.0 %{buildroot}/etc/cron.daily/patch2mail
+	%{__install} -m 0755 patch2mail_11.0 %{buildroot}/etc/cron.daily/patch2mail
 %endif
 %if 0%{?suse_version} < 1100
-	%{__cp} patch2mail_10.3 %{buildroot}/etc/cron.daily/patch2mail
+	%{__install} -m 0755 patch2mail_10.3 %{buildroot}/etc/cron.daily/patch2mail
 %endif
+%{__install} -m 0644 patch2mail.sysconfig %{buildroot}/var/adm/fillup-templates/sysconfig.patch2mail
 
 echo ==== Buildroot: %{buildroot} ====
 find %{buildroot}
 echo ================================
 
 %clean
-rm -rf %{buildroot}
+%{__rm} -rf %{buildroot}
+
+%post
+%{fillup_only -n patch2mail}
 
 %files
 %defattr(-,root,root)
-%attr(755, root, root) /etc/cron.daily/%{name}
-%{_datadir}/%{name}/
-%{_datadir}/%{name}/%{name}.xsl
+%{_sysconfdir}/cron.daily/%{name}
+%{_datadir}/%{name}
+/var/adm/fillup-templates/sysconfig.patch2mail
 %doc README
 
 %changelog
-
-* Tue Dec 09 2008 - cboltz
-- some small output fixes
-- enforce LANG=C to avoid charset problems in zypper output
-- version 0.9.4
-* Fri Nov 21 2008 - cboltz
-- update for openSUSE 11.1 (zypper needs "lu -t patch" now)
-- version 0.9.3
-* Sun Jul 20 2008 - cboltz
-- update for openSUSE 11.0 (scripts for older versions still included)
-- version 0.9.2
-* Mon Feb 18 2008 - cboltz
-- Initial SVN commit of patch2mail
-- SVN: http://svn.opensuse.org/svn/zypp/trunk/tools/patch2mail
-- version 0.9.1
 

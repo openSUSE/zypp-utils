@@ -7,6 +7,7 @@ available.
 
 Usage is very simple: just install the RPM :-)
 It comes with the script in /etc/cron.daily and sends the mail to root.
+(To change the recipient, edit /etc/sysconfig/patch2mail.)
 
 If you want to install this script manually, follow the %install section
 in patch2mail.spec ;-)
@@ -19,11 +20,14 @@ Christian Boltz < p a c k a g e s  AT  c b o l t z DOT d e >
 
 Thanks to Thomas Schraitle for helping with some xslt details.
 
+Thanks to Andreas Schneider < m a i l AT c y n a p s e s DOT o r g >
+for sysconfig support and specfile cleanup.
+
 
 License / Copyright
 ~~~~~~~~~~~~~~~~~~~
 
-Copyright (c) 2007-2008 Christian Boltz - www.cboltz.de
+Copyright (c) 2007-2009 Christian Boltz - www.cboltz.de
 
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
