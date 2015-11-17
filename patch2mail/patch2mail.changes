@@ -1,4 +1,21 @@
 -------------------------------------------------------------------
+Tue Nov 17 15:40:03 UTC 2015 - opensuse@cboltz.de
+
+- use zypp-refresh, not the (no longer existing) zypp-refresh-wrapper
+  (boo#955207)
+- version 1.1.2
+
+-------------------------------------------------------------------
+Wed Mar  7 21:23:18 UTC 2012 - opensuse@cboltz.de
+
+- add copyright header to spec
+
+-------------------------------------------------------------------
+Mon Feb 13 10:51:42 UTC 2012 - coolo@suse.com
+
+- patch license to follow spdx.org standard
+
+-------------------------------------------------------------------
 Sat Jun 25 21:16:37 UTC 2011 - opensuse@cboltz.de
 
 - use --non-interactive to avoid endless hanging zypper process
