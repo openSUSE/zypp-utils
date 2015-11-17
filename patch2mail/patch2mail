@@ -8,7 +8,7 @@ params="-t patch -t package"
 test "$PATCHES_ONLY" = "yes" && params="-t patch"
 
 /usr/sbin/zypp-refresh-wrapper >/dev/null
-LANG=C /usr/bin/zypper --xmlout lu $params | xsltproc /usr/share/patch2mail/patch2mail.xsl - > "$tmp"
+LANG=C /usr/bin/zypper --xmlout --non-interactive lu $params | xsltproc /usr/share/patch2mail/patch2mail.xsl - > "$tmp"
 grep "ERROR\|^===" "$tmp" >/dev/null || {
 	rm -f "$tmp"
 	exit 0 # no updates, no errors

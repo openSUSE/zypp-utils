@@ -1,6 +1,6 @@
 #
 Name:           patch2mail
-Version:        1.1
+Version:        1.1.1
 Release:        1
 #
 License:        GPLv2+

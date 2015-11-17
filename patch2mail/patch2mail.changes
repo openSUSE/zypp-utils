@@ -1,4 +1,11 @@
 -------------------------------------------------------------------
+Sat Jun 25 21:16:37 UTC 2011 - opensuse@cboltz.de
+
+- use --non-interactive to avoid endless hanging zypper process
+  on unknown repo signing keys
+- version 1.1.1
+
+-------------------------------------------------------------------
 Sun Jun 19 15:48:01 UTC 2011 - opensuse@cboltz.de
 
 - updated summary to include package updates
