@@ -64,6 +64,7 @@ for more details.
 </xsl:template>
 
 <xsl:template match="update-list/update">
+
 <xsl:if test="@kind = 'patch'">
   <xsl:text>&#10;=== </xsl:text> 
   <xsl:value-of select="@name" /> 
@@ -74,7 +75,23 @@ for more details.
   <xsl:text>) ===&#10;&#10;</xsl:text>
   <xsl:apply-templates />
   <xsl:text>&#10;</xsl:text>
+  <xsl:if test="@pkgmanager = 'true'">
+    <xsl:text>&#10;*** This patch affects the package manager.</xsl:text> 
+    <xsl:text>&#10;*** More updates might become available after installing it.</xsl:text> 
+    <xsl:text>&#10;&#10;</xsl:text>
+  </xsl:if>
 </xsl:if>
+
+<xsl:if test="@kind = 'package'">
+  <xsl:text>&#10;=== </xsl:text>
+  <xsl:value-of select="@name" />
+  <xsl:text> </xsl:text>
+  <xsl:value-of select="@edition" />                                                                                                                   
+  <xsl:text> (package) ===&#10;&#10;</xsl:text>
+  <xsl:apply-templates />
+  <xsl:text>&#10;</xsl:text>
+</xsl:if>
+
 </xsl:template>
 
 <xsl:template match="update-list/update/summary">

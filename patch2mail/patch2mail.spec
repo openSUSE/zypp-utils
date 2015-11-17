@@ -1,11 +1,11 @@
 #
 Name:           patch2mail
-Version:        1.0
+Version:        1.1
 Release:        1
 #
 License:        GPLv2+
 #
-Summary:        Patch notification via mail
+Summary:        Patch and package update notification via mail
 #BuildRequires: bash
 #
 Url:            http://blog.cboltz.de/plugin/tag/patch2mail
@@ -32,7 +32,7 @@ Requires:       zypper
 
 %description
 patch2mail checks for available updates and sends a mail to root
-if any patches are available
+if any patches or updated packages (configureable) are available.
 
 %prep
 %setup -q

@@ -7,3 +7,12 @@
 # The user or mail address to send update notifications.
 #
 MAILADDRESS="root"
+
+## Type:           yesno
+## Default:        yes
+#
+# Restrict update list to patches?
+# yes: notification mail will only list patches
+# no: notification mail will list patches and package updates
+PATCHES_ONLY="no"
+

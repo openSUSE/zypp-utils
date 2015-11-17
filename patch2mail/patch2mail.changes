@@ -1,4 +1,18 @@
 -------------------------------------------------------------------
+Sun Jun 19 15:48:01 UTC 2011 - opensuse@cboltz.de
+
+- updated summary to include package updates
+- version 1.1
+
+-------------------------------------------------------------------
+Sun Apr  3 13:37:52 UTC 2011 - opensuse@cboltz.de
+
+- include note about patches affecting the package manager
+- new sysconfig option PATCHES_ONLY - set to "no" to include package 
+  updates in the notification mail
+- added handling for package updates in patch2mail and the xslt
+
+-------------------------------------------------------------------
 Tue Nov 23 20:11:32 UTC 2010 - opensuse@cboltz.de
 
 - version 1.0
