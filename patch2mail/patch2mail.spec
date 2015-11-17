@@ -1,3 +1,4 @@
+#
 # spec file for package patch2mail
 #
 # Copyright (c) 2008-2015 Christian Boltz
@@ -14,17 +15,18 @@
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
 
+
 Name:           patch2mail
 Version:        1.1.2
-Release:        1
+Release:        0
 #
-License:        GPL-2.0+
 #
 Summary:        Patch and package update notification via mail
+License:        GPL-2.0+
+Group:          System/Packages
 #BuildRequires: bash
 #
 Url:            http://blog.cboltz.de/plugin/tag/patch2mail
-Group:          System/Packages
 Source:         %{name}-%{version}.tar.bz2
 #
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
