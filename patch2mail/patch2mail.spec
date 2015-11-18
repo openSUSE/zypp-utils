@@ -1,22 +1,45 @@
-# norootforbuild
 #
-Name:          patch2mail
-Version:       0.9.5
-Release:       1
+# spec file for package patch2mail
 #
-License:       GPL
-Group:         System/Packages
+# Copyright (c) 2008-2015 Christian Boltz
 #
-BuildRoot:     %{_tmppath}/%{name}-%{version}-build
-BuildRequires: bash
-#
-URL:           http://blog.cboltz.de/plugin/tag/patch2mail
-Source:        %{name}-%{version}.tar.bz2
-#
-Summary:       Patch notification via mail
-BuildArch:     noarch
+# All modifications and additions to the file contributed by third parties
+# remain the property of their copyright owners, unless otherwise agreed
+# upon. The license for this file, and modifications and additions to the
+# file, is the same license as for the pristine package itself (unless the
+# license for the pristine package is not an Open Source License, in which
+# case the license is the MIT License). An "Open Source License" is a
+# license that conforms to the Open Source Definition (Version 1.9)
+# published by the Open Source Initiative.
 
-Requires:      bash mktemp mail grep zypper coreutils net-tools cron libxslt
+# Please submit bugfixes or comments via http://bugs.opensuse.org/
+#
+
+
+Name:           patch2mail
+Version:        1.1.2
+Release:        0
+#
+#
+Summary:        Patch and package update notification via mail
+License:        GPL-2.0+
+Group:          System/Packages
+#BuildRequires: bash
+#
+Url:            http://blog.cboltz.de/plugin/tag/patch2mail
+Source:         %{name}-%{version}.tar.bz2
+#
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+BuildArch:      noarch
+
+Requires:       /bin/hostname
+Requires:       /bin/rm
+Requires:       /usr/bin/xsltproc
+Requires:       cron
+Requires:       grep
+Requires:       mail
+Requires:       mktemp
+Requires:       zypper
 # detailed requirements:
 #      zypper    # (>= 11.0) zypp-refresh-rapper, zypper
 #      zypper    # (<= 10.3) zypp-checkpatches-wrapper
@@ -26,11 +49,7 @@ Requires:      bash mktemp mail grep zypper coreutils net-tools cron libxslt
 
 %description
 patch2mail checks for available updates and sends a mail to root
-if any patches are available
-
-Authors:
-----------
-    Christian Boltz < p a c k a g e s  AT  c b o l t z DOT d e >
+if any patches or updated packages (configureable) are available.
 
 %prep
 %setup -q
@@ -39,22 +58,22 @@ Authors:
 
 %install
 %{__install} -d -m 0755 %{buildroot}%{_datadir}/%{name}
-%{__install} -d -m 0755 %{buildroot}/etc/cron.daily
-%{__install} -d -m 0755 %{buildroot}/var/adm/fillup-templates/
+%{__install} -d -m 0755 %{buildroot}%{_sysconfdir}/cron.daily
+%{__install} -d -m 0755 %{buildroot}%{_localstatedir}/adm/fillup-templates/
 
 %{__install} -m 0644 patch2mail.xsl %{buildroot}%{_datadir}/%{name}/patch2mail.xsl
 %if 0%{?suse_version} < 1030
 	%{__install} -m 0644 patch2mail.xsl_10.2 %{buildroot}%{_datadir}/%{name}/patch2mail.xsl
 %endif
 
-%{__install} -m 0755 patch2mail %{buildroot}/etc/cron.daily/patch2mail
+%{__install} -m 0755 patch2mail %{buildroot}%{_sysconfdir}/cron.daily/patch2mail
 %if 0%{?suse_version} < 1110
-	%{__install} -m 0755 patch2mail_11.0 %{buildroot}/etc/cron.daily/patch2mail
+	%{__install} -m 0755 patch2mail_11.0 %{buildroot}%{_sysconfdir}/cron.daily/patch2mail
 %endif
 %if 0%{?suse_version} < 1100
-	%{__install} -m 0755 patch2mail_10.3 %{buildroot}/etc/cron.daily/patch2mail
+	%{__install} -m 0755 patch2mail_10.3 %{buildroot}%{_sysconfdir}/cron.daily/patch2mail
 %endif
-%{__install} -m 0644 patch2mail.sysconfig %{buildroot}/var/adm/fillup-templates/sysconfig.patch2mail
+%{__install} -m 0644 patch2mail.sysconfig %{buildroot}%{_localstatedir}/adm/fillup-templates/sysconfig.patch2mail
 
 echo ==== Buildroot: %{buildroot} ====
 find %{buildroot}
@@ -70,8 +89,7 @@ echo ================================
 %defattr(-,root,root)
 %{_sysconfdir}/cron.daily/%{name}
 %{_datadir}/%{name}
-/var/adm/fillup-templates/sysconfig.patch2mail
-%doc README
+%{_localstatedir}/adm/fillup-templates/sysconfig.patch2mail
+%doc README COPYING
 
 %changelog
-

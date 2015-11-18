@@ -9,6 +9,10 @@ Usage is very simple: just install the RPM :-)
 It comes with the script in /etc/cron.daily and sends the mail to root.
 (To change the recipient, edit /etc/sysconfig/patch2mail.)
 
+Starting with patch2mail 1.1, the notification mail will also include 
+package updates. If you want notifications only for patches, set 
+PATCHES_ONLY="yes" in /etc/sysconfig/patch2mail.
+
 If you want to install this script manually, follow the %install section
 in patch2mail.spec ;-)
 

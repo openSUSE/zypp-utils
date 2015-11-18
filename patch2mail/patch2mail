@@ -4,13 +4,15 @@
 
 tmp="$(mktemp /tmp/updates.XXXXXX)"
 
-/usr/sbin/zypp-refresh-wrapper >/dev/null
-LANG=C /usr/bin/zypper --xmlout lu -t patch | xsltproc /usr/share/patch2mail/patch2mail.xsl - > "$tmp"
+params="-t patch -t package"
+test "$PATCHES_ONLY" = "yes" && params="-t patch"
+
+/usr/sbin/zypp-refresh >/dev/null
+LANG=C /usr/bin/zypper --xmlout --non-interactive lu $params | xsltproc /usr/share/patch2mail/patch2mail.xsl - > "$tmp"
 grep "ERROR\|^===" "$tmp" >/dev/null || {
 	rm -f "$tmp"
 	exit 0 # no updates, no errors
 }
 
 grep -v "^__TOTAL__" "$tmp" | mail -s "$(hostname) updates" ${MAILADDRESS}
-# echo "*** $(hostname) updates ***"; grep -v "^__TOTAL__" "$tmp"
 rm -f "$tmp"
